@@ -1,6 +1,6 @@
-import { useNavigate } from 'react-router-dom';
-import { useForm, useWatch } from 'react-hook-form';
-import { TextInput } from './components/TextInput';
+import { useNavigate } from "react-router-dom";
+import { useForm, useWatch } from "react-hook-form";
+import { TextInput } from "./components/TextInput";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -11,23 +11,26 @@ export default function Register() {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      fullName: '',
-      phoneNumber: '',
-      email: '',
-      password: '',
-      companyName: '',
-      isAgency: 'yes',
+      fullName: "",
+      phoneNumber: "",
+      email: "",
+      password: "",
+      companyName: "",
+      isAgency: "yes",
     },
   });
 
-  const isAgencyValue = useWatch({ control, name: 'isAgency' });
+  const isAgencyValue = useWatch({ control, name: "isAgency" });
 
   const onSubmit = () => {
-    navigate('/profile');
+    navigate("/profile");
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col h-full overflow-hidden">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col h-full overflow-hidden"
+    >
       <div className="flex-1 overflow-y-auto p-5 pt-8 no-scrollbar">
         <div className="mb-8">
           <h1 className="text-[28px] leading-9 font-bold text-[#1D2226] max-w-50">
@@ -41,52 +44,52 @@ export default function Register() {
             placeholder="Marry Doe"
             requiredAsterisk
             error={errors.fullName?.message as string}
-            {...register('fullName', { required: 'Full Name is required' })}
+            {...register("fullName", { required: "Full Name is required" })}
           />
           <TextInput
             label="Phone number"
-            placeholder="Marry Doe"
+            placeholder="1234567890"
             requiredAsterisk
             error={errors.phoneNumber?.message as string}
-            {...register('phoneNumber', {
-              required: 'Phone number is required',
+            {...register("phoneNumber", {
+              required: "Phone number is required",
               pattern: {
                 value: /^[0-9+\-\s()]{7,15}$/,
-                message: 'Invalid phone number',
+                message: "Invalid phone number",
               },
             })}
           />
           <TextInput
             label="Email address"
-            placeholder="Marry Doe"
+            placeholder="Marrydoe@gmail.com"
             requiredAsterisk
             error={errors.email?.message as string}
-            {...register('email', {
-              required: 'Email is required',
+            {...register("email", {
+              required: "Email is required",
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: 'Invalid email address',
+                message: "Invalid email address",
               },
             })}
           />
           <TextInput
             label="Password"
             type="password"
-            placeholder="Marry Doe"
+            placeholder="Marrydoe@123"
             requiredAsterisk
             error={errors.password?.message as string}
-            {...register('password', {
-              required: 'Password is required',
+            {...register("password", {
+              required: "Password is required",
               minLength: {
                 value: 6,
-                message: 'Password must be at least 6 characters',
+                message: "Password must be at least 6 characters",
               },
             })}
           />
           <TextInput
             label="Company name"
-            placeholder="Marry Doe"
-            {...register('companyName')}
+            placeholder="My Company"
+            {...register("companyName")}
           />
         </div>
 
@@ -98,33 +101,43 @@ export default function Register() {
             <label className="flex items-center gap-2 cursor-pointer">
               <div
                 className={`w-5.5 h-5.5 rounded-full flex items-center justify-center border-[1.5px] ${
-                  isAgencyValue === 'yes' ? 'border-[#6C25FF]' : 'border-[#CBC1EE]'
+                  isAgencyValue === "yes"
+                    ? "border-[#6C25FF]"
+                    : "border-[#CBC1EE]"
                 }`}
               >
-                {isAgencyValue === 'yes' && <div className="w-3 h-3 rounded-full bg-[#6C25FF]" />}
+                {isAgencyValue === "yes" && (
+                  <div className="w-3 h-3 rounded-full bg-[#6C25FF]" />
+                )}
               </div>
               <input
                 type="radio"
                 value="yes"
                 className="hidden"
-                {...register('isAgency', { required: true })}
+                {...register("isAgency", { required: true })}
               />
-              <span className="text-[15px] font-medium text-[#1D2226]">Yes</span>
+              <span className="text-[15px] font-medium text-[#1D2226]">
+                Yes
+              </span>
             </label>
 
             <label className="flex items-center gap-2 cursor-pointer">
               <div
                 className={`w-5.5 h-5.5 rounded-full flex items-center justify-center border-[1.5px] ${
-                  isAgencyValue === 'no' ? 'border-[#6C25FF]' : 'border-[#CBC1EE]'
+                  isAgencyValue === "no"
+                    ? "border-[#6C25FF]"
+                    : "border-[#CBC1EE]"
                 }`}
               >
-                {isAgencyValue === 'no' && <div className="w-3 h-3 rounded-full bg-[#6C25FF]" />}
+                {isAgencyValue === "no" && (
+                  <div className="w-3 h-3 rounded-full bg-[#6C25FF]" />
+                )}
               </div>
               <input
                 type="radio"
                 value="no"
                 className="hidden"
-                {...register('isAgency', { required: true })}
+                {...register("isAgency", { required: true })}
               />
               <span className="text-[15px] font-medium text-[#1D2226]">No</span>
             </label>
